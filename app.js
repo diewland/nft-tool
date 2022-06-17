@@ -8,10 +8,12 @@ function freeze(bool=true) {
   $('#btn-download').attr('disabled', bool);
   if (bool) {
     $('#btn-download').addClass('spin');
+    $('#div-msg').html('');
     $('#img-preview').hide();
   }
   else {
     $('#btn-download').removeClass('spin');
+    $('#div-msg').html('');
     $('#img-preview').show();
   }
 }
@@ -29,15 +31,16 @@ $('#btn-download').click(_ => {
 // download
 function download(token_id) {
   freeze();
+  $('#div-msg').append('1. find meta-data...<br>');
   cur_contract.methods.tokenURI(token_id).call().then(r => {
     // https://ipfs.io/ipfs/QmZ2eKEiuV1UKxgsLrPUK9JXhvLhtbetxUwZEHRiqUaHq4/3356.json
     let json_url = 'https://ipfs.io/ipfs/' + r.split('ipfs://')[1];
-    console.log('resolve json :', json_url);
-    // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
+    $('#div-msg').append('2. read meta-data...<br>');
     $.getJSON(json_url, info => {
       // {"image":"ipfs://QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU","name":"Bored Town #3356","description":"Bored Town is a collection of 5555 Bored Town Monsters living on the Optimism blockchain. As an open-source brand (aka CC0), Bored Town holders have the chance to create whatever they put their mind to, both for personal and commercial purposes.","external_url":"https://quixotic.io/collection/boredtown","attributes":[{"trait_type":"Background","value":"Dark Gray"},{"trait_type":"Accessory","value":"White Mandala"},{"trait_type":"Body","value":"Sweater With Thorns"},{"trait_type":"Head","value":"Sponky"}],"compiler":"nft-inator.com"}
+      // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
       let img_url = 'https://nftscan.mypinata.cloud/ipfs/' + info.image.split('ipfs://')[1];
-      console.log('resolve photo :', img_url);
+      $('#div-msg').append('3. load image...<br>');
       $('#img-preview').attr('src', img_url);
     })
   });
@@ -47,7 +50,7 @@ $('#img-preview').on('load', unfreeze);
 // init web3
 let web3 = new Web3(PROVIDER_ALCHEMY);
 
-// get current contract
+// get current contract TODO update contract when change project
 let contract_addr = PROJECT_INFO[1].contract_addr;
 let contract_url = API_OP_CONTRACT + contract_addr;
 $.getJSON(contract_url, function (data) {
