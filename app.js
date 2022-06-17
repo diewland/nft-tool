@@ -7,9 +7,11 @@ function freeze(bool=true) {
   $('#ipt-token-id').attr('disabled', bool);
   $('#btn-download').attr('disabled', bool);
   if (bool) {
+    $('#btn-download').addClass('spin');
     $('#img-preview').hide();
   }
   else {
+    $('#btn-download').removeClass('spin');
     $('#img-preview').show();
   }
 }
