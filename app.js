@@ -42,21 +42,24 @@ function download(token_id) {
   download_op(token_id);
 }
 function download_op(token_id) {
-  l('1. find meta-data...');
+  l('1. finding meta-data...');
   cur_contract.methods.tokenURI(token_id).call().then(r => {
     // https://ipfs.io/ipfs/QmZ2eKEiuV1UKxgsLrPUK9JXhvLhtbetxUwZEHRiqUaHq4/3356.json
     let json_url = 'https://ipfs.io/ipfs/' + r.split('ipfs://')[1];
-    l('2. read meta-data...');
+    l('2. reading meta-data...');
     console.log(json_url);
     query(json_url, info => {
       // {"image":"ipfs://QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU","name":"Bored Town #3356","description":"Bored Town is a collection of 5555 Bored Town Monsters living on the Optimism blockchain. As an open-source brand (aka CC0), Bored Town holders have the chance to create whatever they put their mind to, both for personal and commercial purposes.","external_url":"https://quixotic.io/collection/boredtown","attributes":[{"trait_type":"Background","value":"Dark Gray"},{"trait_type":"Accessory","value":"White Mandala"},{"trait_type":"Body","value":"Sweater With Thorns"},{"trait_type":"Head","value":"Sponky"}],"compiler":"nft-inator.com"}
       // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
       let img_url = 'https://nftscan.mypinata.cloud/ipfs/' + info.image.split('ipfs://')[1];
-      l('3. load image...');
+      l(`3. loading image...<br>If nothing happens for 1 minute, <a href='${img_url}'>click here</a>`);
       console.log(info);
       console.log(img_url);
       $('#img-preview').attr('src', img_url);
     })
+  }).catch(msg => {
+    alert(msg);
+    unfreeze();
   });
 }
 
