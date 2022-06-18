@@ -47,11 +47,14 @@ function download_op(token_id) {
     // https://ipfs.io/ipfs/QmZ2eKEiuV1UKxgsLrPUK9JXhvLhtbetxUwZEHRiqUaHq4/3356.json
     let json_url = 'https://ipfs.io/ipfs/' + r.split('ipfs://')[1];
     l('2. read meta-data...');
+    console.log(json_url);
     query(json_url, info => {
       // {"image":"ipfs://QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU","name":"Bored Town #3356","description":"Bored Town is a collection of 5555 Bored Town Monsters living on the Optimism blockchain. As an open-source brand (aka CC0), Bored Town holders have the chance to create whatever they put their mind to, both for personal and commercial purposes.","external_url":"https://quixotic.io/collection/boredtown","attributes":[{"trait_type":"Background","value":"Dark Gray"},{"trait_type":"Accessory","value":"White Mandala"},{"trait_type":"Body","value":"Sweater With Thorns"},{"trait_type":"Head","value":"Sponky"}],"compiler":"nft-inator.com"}
       // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
       let img_url = 'https://nftscan.mypinata.cloud/ipfs/' + info.image.split('ipfs://')[1];
       l('3. load image...');
+      console.log(info);
+      console.log(img_url);
       $('#img-preview').attr('src', img_url);
     })
   });
@@ -71,20 +74,21 @@ function update_contract(new_provider, new_ctr_addr) {
     cur_provider = new_provider;
   }
   if (new_ctr_addr != cur_ctr_addr) {
-    cur_ctr_addr = new_ctr_addr;
-    let contract_url = API_OP_CONTRACT + new_ctr_addr;
+    let url = API_OP_CONTRACT + new_ctr_addr;
     freeze();
     l("switch contract..");
-    query(contract_url, function (data) {
+    query(url, data => {
         let contractABI = JSON.parse(data.result);
         if (contractABI != ''){
             cur_contract = new web3.eth.Contract(contractABI);
             cur_contract.options.address = new_ctr_addr;
+            console.log('contract', cur_contract);
         } else {
           alert('contractABI not found');
         }
         unfreeze();
     });
+    cur_ctr_addr = new_ctr_addr;
   }
 }
 $('#sel-project').change(evt => {
