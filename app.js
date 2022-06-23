@@ -60,9 +60,10 @@ function download_op(token_id) {
     query(json_url, info => {
       // {"image":"ipfs://QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU","name":"Bored Town #3356","description":"Bored Town is a collection of 5555 Bored Town Monsters living on the Optimism blockchain. As an open-source brand (aka CC0), Bored Town holders have the chance to create whatever they put their mind to, both for personal and commercial purposes.","external_url":"https://quixotic.io/collection/boredtown","attributes":[{"trait_type":"Background","value":"Dark Gray"},{"trait_type":"Accessory","value":"White Mandala"},{"trait_type":"Body","value":"Sweater With Thorns"},{"trait_type":"Head","value":"Sponky"}],"compiler":"nft-inator.com"}
       // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
-      // let img_url = 'https://nftscan.mypinata.cloud/ipfs/' + info.image.split('ipfs://')[1];
       // https://quixotic.infura-ipfs.io/ipfs/QmbKa8WixDNeZCsxjeAchgzC8UqiAq9YYrtHx8cgxLzRe6
-      let img_url = 'https://quixotic.infura-ipfs.io/ipfs/' + info.image.split('ipfs://')[1];
+      // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
+      let img_code = info.image.split('ipfs://')[1];
+      let img_url = 'https://quixotic.infura-ipfs.io/ipfs/' + img_code;
       l(`3. loading image... or <a href='${img_url}'>open directly</a>`);
       console.log(info);
       console.log(img_url);
