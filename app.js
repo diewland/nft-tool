@@ -43,11 +43,15 @@ $('#btn-download').click(_ => {
   if (!cur_contract) return;
   let token_id = $('#ipt-token-id').val().trim();
   if (!token_id) return;
-  download(token_id);
+  download(+token_id);
 });
 function download(token_id) {
   freeze();
-  download_op(token_id);
+  let proj_no = $('#sel-project').val();
+  if (proj_no == PROJ_APETIMISM)
+    download_apeti(token_id);
+  else
+    download_op(token_id);
 }
 function download_op(token_id) {
   l('1. finding meta-data...');
@@ -61,7 +65,6 @@ function download_op(token_id) {
       // {"image":"ipfs://QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU","name":"Bored Town #3356","description":"Bored Town is a collection of 5555 Bored Town Monsters living on the Optimism blockchain. As an open-source brand (aka CC0), Bored Town holders have the chance to create whatever they put their mind to, both for personal and commercial purposes.","external_url":"https://quixotic.io/collection/boredtown","attributes":[{"trait_type":"Background","value":"Dark Gray"},{"trait_type":"Accessory","value":"White Mandala"},{"trait_type":"Body","value":"Sweater With Thorns"},{"trait_type":"Head","value":"Sponky"}],"compiler":"nft-inator.com"}
       // https://nftscan.mypinata.cloud/ipfs/QmeR1DwxMTZQPWSH2CSgNeAWHmXztsPek4SQHKtSZHg7XU
       // https://quixotic.infura-ipfs.io/ipfs/QmbKa8WixDNeZCsxjeAchgzC8UqiAq9YYrtHx8cgxLzRe6
-      // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
       let img_code = info.image.split('ipfs://')[1];
       let img_url = 'https://quixotic.infura-ipfs.io/ipfs/' + img_code;
       l(`3. loading image... or <a href='${img_url}'>open directly</a>`);
@@ -73,6 +76,28 @@ function download_op(token_id) {
     alert(msg);
     unfreeze();
   });
+}
+function download_apeti(token_id) {
+  if ((token_id >= 0) && (token_id < 3999)) { // 0-3998
+    // https://cdn.apetimism.com/nfts/hidden.jpg
+    // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
+    // https://cdn.apetimism.com/nftstransparent/69470870.png?v=2
+    let mint_key = APETI_MINT_KEYS[token_id];
+    let img_url = 'https://cdn.apetimism.com/nfts/hidden.jpg';
+    let img_url0 = null;
+    if (mint_key != 'hidden') {
+      img_url = `https://cdn.apetimism.com/nftstransparent/${mint_key}.png?v=2`;
+      img_url0 = `https://cdn.apetimism.com/nfts/${mint_key}.jpg?v=2`;
+    }
+    l(`loading image... or <a href='${img_url}'>open directly</a>`);
+    console.log(img_url);
+    console.log(img_url0);
+    $('#img-preview').attr('src', img_url);
+  }
+  else {
+    alert('Token ID between 0-3998');
+    unfreeze();
+  }
 }
 
 // JSON
