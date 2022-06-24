@@ -9,7 +9,7 @@ function get_qs(k) {
   var half = location.search.split(k + '=')[1];
   return half !== undefined ? decodeURIComponent(half.split('&')[0]) : null;
 }
-let qs_project = get_qs('project');
+let qs_project = get_qs('project') || get_qs('p');
 let qs_token_id = get_qs('id');
 
 // update version
@@ -49,7 +49,7 @@ function download(token_id) {
   freeze();
   let proj_no = $('#sel-project').val();
   if (proj_no == PROJ_APETIMISM)
-    download_apeti(token_id);
+    download_apeti_bg(token_id);
   else if (proj_no == PROJ_APETI_NOBG)
     download_apeti_nobg(token_id);
   else
@@ -79,26 +79,15 @@ function download_op(token_id) {
     unfreeze();
   });
 }
-function download_apeti(token_id) {
-  if ((token_id >= 0) && (token_id < 3999)) { // 0-3998
-    // https://cdn.apetimism.com/nfts/hidden.jpg
-    // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
-    // https://cdn.apetimism.com/nftstransparent/69470870.png?v=2
-    let mint_key = APETI_MINT_KEYS[token_id];
-    let img_url = 'https://cdn.apetimism.com/nfts/hidden.jpg';
-    if (mint_key != 'hidden') {
-      img_url = `https://cdn.apetimism.com/nfts/${mint_key}.jpg?v=2`;
-    }
-    l(`loading image... or <a href='${img_url}'>open directly</a>`);
-    console.log(img_url);
-    $('#img-preview').attr('src', img_url);
-  }
-  else {
-    alert('Token ID between 0-3998');
-    unfreeze();
-  }
+function download_apeti_bg(token_id) {
+  let patt = 'https://cdn.apetimism.com/nfts/<MINT_KEY>.jpg?v=2';
+  download_apeti(token_id, patt);
 }
 function download_apeti_nobg(token_id) {
+  let patt = 'https://cdn.apetimism.com/nftstransparent/<MINT_KEY>.png?v=2';
+  download_apeti(token_id, patt);
+}
+function download_apeti(token_id, url_patt) {
   if ((token_id >= 0) && (token_id < 3999)) { // 0-3998
     // https://cdn.apetimism.com/nfts/hidden.jpg
     // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
@@ -106,7 +95,7 @@ function download_apeti_nobg(token_id) {
     let mint_key = APETI_MINT_KEYS[token_id];
     let img_url = 'https://cdn.apetimism.com/nfts/hidden.jpg';
     if (mint_key != 'hidden') {
-      img_url = `https://cdn.apetimism.com/nftstransparent/${mint_key}.png?v=2`;
+      img_url = url_patt.replace('<MINT_KEY>', mint_key);
     }
     l(`loading image... or <a href='${img_url}'>open directly</a>`);
     console.log(img_url);
