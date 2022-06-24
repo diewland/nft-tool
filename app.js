@@ -52,6 +52,8 @@ function download(token_id) {
     download_apeti_bg(token_id);
   else if (proj_no == PROJ_APETI_NOBG)
     download_apeti_nobg(token_id);
+  else if (proj_no == PROJ_BORED_SVVS)
+    download_bored_svvs(token_id);
   else
     download_op(token_id);
 }
@@ -79,6 +81,24 @@ function download_op(token_id) {
     unfreeze();
   });
 }
+function lock(token_id, from, to, callback) {
+  if ((token_id >= from) && (token_id <= to)) {
+    callback(token_id);
+  }
+  else {
+    alert(`Token ID between ${from} - ${to}`);
+    unfreeze();
+  }
+}
+function download_bored_svvs(token_id) {
+  lock(token_id, 0, 554, _ => {
+    // https://sorryvrerror.mypinata.cloud/ipfs/QmQ7X4x1wi7rdseVa9JsJTBHhtFa1rePoHSEjBs83sHxrY/554.png
+    let img_url = `https://sorryvrerror.mypinata.cloud/ipfs/QmQ7X4x1wi7rdseVa9JsJTBHhtFa1rePoHSEjBs83sHxrY/${token_id}.png`;
+    l(`loading image... or <a href='${img_url}'>open directly</a>`);
+    console.log(img_url);
+    $('#img-preview').attr('src', img_url);
+  });
+}
 function download_apeti_bg(token_id) {
   let patt = 'https://cdn.apetimism.com/nfts/<MINT_KEY>.jpg?v=2';
   download_apeti(token_id, patt);
@@ -88,7 +108,7 @@ function download_apeti_nobg(token_id) {
   download_apeti(token_id, patt);
 }
 function download_apeti(token_id, url_patt) {
-  if ((token_id >= 0) && (token_id < 3999)) { // 0-3998
+  lock(token_id, 0, 3998, _ => {
     // https://cdn.apetimism.com/nfts/hidden.jpg
     // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
     // https://cdn.apetimism.com/nftstransparent/69470870.png?v=2
@@ -100,11 +120,7 @@ function download_apeti(token_id, url_patt) {
     l(`loading image... or <a href='${img_url}'>open directly</a>`);
     console.log(img_url);
     $('#img-preview').attr('src', img_url);
-  }
-  else {
-    alert('Token ID between 0-3998');
-    unfreeze();
-  }
+  });
 }
 
 // JSON
