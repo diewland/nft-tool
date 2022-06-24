@@ -50,6 +50,8 @@ function download(token_id) {
   let proj_no = $('#sel-project').val();
   if (proj_no == PROJ_APETIMISM)
     download_apeti(token_id);
+  else if (proj_no == PROJ_APETI_NOBG)
+    download_apeti_nobg(token_id);
   else
     download_op(token_id);
 }
@@ -84,14 +86,30 @@ function download_apeti(token_id) {
     // https://cdn.apetimism.com/nftstransparent/69470870.png?v=2
     let mint_key = APETI_MINT_KEYS[token_id];
     let img_url = 'https://cdn.apetimism.com/nfts/hidden.jpg';
-    let img_url0 = null;
     if (mint_key != 'hidden') {
-      img_url = `https://cdn.apetimism.com/nftstransparent/${mint_key}.png?v=2`;
-      img_url0 = `https://cdn.apetimism.com/nfts/${mint_key}.jpg?v=2`;
+      img_url = `https://cdn.apetimism.com/nfts/${mint_key}.jpg?v=2`;
     }
     l(`loading image... or <a href='${img_url}'>open directly</a>`);
     console.log(img_url);
-    console.log(img_url0);
+    $('#img-preview').attr('src', img_url);
+  }
+  else {
+    alert('Token ID between 0-3998');
+    unfreeze();
+  }
+}
+function download_apeti_nobg(token_id) {
+  if ((token_id >= 0) && (token_id < 3999)) { // 0-3998
+    // https://cdn.apetimism.com/nfts/hidden.jpg
+    // https://cdn.apetimism.com/nfts/60143956.jpg?v=2
+    // https://cdn.apetimism.com/nftstransparent/69470870.png?v=2
+    let mint_key = APETI_MINT_KEYS[token_id];
+    let img_url = 'https://cdn.apetimism.com/nfts/hidden.jpg';
+    if (mint_key != 'hidden') {
+      img_url = `https://cdn.apetimism.com/nftstransparent/${mint_key}.png?v=2`;
+    }
+    l(`loading image... or <a href='${img_url}'>open directly</a>`);
+    console.log(img_url);
     $('#img-preview').attr('src', img_url);
   }
   else {
