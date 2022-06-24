@@ -9,8 +9,8 @@ const API_OP_CONTRACT = 'https://api-optimistic.etherscan.io/api?module=contract
 
 // project info
 const PROJ_BORED_TOWN = '1';
-const PROJ_APETIMISM  = '2';
-const PROJ_APETI_NOBG = '3';
+const PROJ_APETIMISM  = '3';
+const PROJ_APETI_NOBG = '2';
 const PROJECT_INFO = {
   // Bored Town, Optimism
   [PROJ_BORED_TOWN]: {
