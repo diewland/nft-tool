@@ -1,5 +1,5 @@
 // version
-const VERSION = "v1.0.5"
+const VERSION = "v1.0.6"
 
 // provider
 const PROVIDER_OP = "https://opt-mainnet.g.alchemy.com/v2/MnmlgcGeD8FPWiy_0SHlubv1htTHIB1g";
@@ -11,6 +11,7 @@ const API_OP_CONTRACT = 'https://api-optimistic.etherscan.io/api?module=contract
 const PROJ_BORED_TOWN = '1';
 const PROJ_APETIMISM  = '3';
 const PROJ_APETI_NOBG = '2';
+const PROJ_BORED_SVVS = '4';
 const PROJECT_INFO = {
   // Bored Town, Optimism
   [PROJ_BORED_TOWN]: {
@@ -26,5 +27,10 @@ const PROJECT_INFO = {
   [PROJ_APETI_NOBG]: {
     provider: PROVIDER_OP,
     contract_addr: '0x51E5426eDE4e2d4c2586371372313B5782387222',
+  },
+  // Bored Survivors, Optimism
+  [PROJ_BORED_SVVS]: {
+    provider: PROVIDER_OP,
+    contract_addr: '0xf912C18f73AaEce880e2c683d4c412ea55327509',
   },
 };
