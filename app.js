@@ -62,6 +62,8 @@ function download(token_id) {
     download_apeti_nobg(token_id);
   else if (proj_no == PROJ_BORED_SVVS)
     download_bored_svvs(token_id);
+  else if (proj_no == PROJ_NERD_APE)
+    download_nerd_ape(token_id);
   else
     download_contract_op(token_id);
 }
@@ -117,6 +119,14 @@ function download_apeti(token_id, url_patt, from_id=0, to_id=3998) {
   if (mint_key != 'hidden') {
     img_url = url_patt.replace('<MINT_KEY>', mint_key);
   }
+  l(`loading image... or <a href='${img_url}'>open directly</a>`);
+  console.log(img_url);
+  $('#img-preview').attr('src', img_url);
+}
+function download_nerd_ape(token_id, from_id=0, to_id=3332) {
+  if (lock(token_id, from_id, to_id)) return;
+  // https://quixotic.infura-ipfs.io/ipfs/QmQfF48YCDgDN1BFvSUy64jNebu4wakRhbGpr7XoZFPBLS/675
+  let img_url = 'https://quixotic.infura-ipfs.io/ipfs/QmQfF48YCDgDN1BFvSUy64jNebu4wakRhbGpr7XoZFPBLS/' + token_id;
   l(`loading image... or <a href='${img_url}'>open directly</a>`);
   console.log(img_url);
   $('#img-preview').attr('src', img_url);

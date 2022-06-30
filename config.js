@@ -1,5 +1,5 @@
 // version
-const VERSION = "v1.0.8"
+const VERSION = "v1.0.9"
 
 // provider
 const PROVIDER_OP = "https://opt-mainnet.g.alchemy.com/v2/MnmlgcGeD8FPWiy_0SHlubv1htTHIB1g";
@@ -12,6 +12,7 @@ const PROJ_BORED_TOWN = '1';
 const PROJ_APETIMISM  = '3';
 const PROJ_APETI_NOBG = '2';
 const PROJ_BORED_SVVS = '4';
+const PROJ_NERD_APE   = '5';
 const PROJECT_INFO = {
   // Bored Town, Optimism
   // https://quixotic.io/collection/boredtown
@@ -36,5 +37,11 @@ const PROJECT_INFO = {
   [PROJ_BORED_SVVS]: {
     //provider: PROVIDER_OP,
     //contract_addr: '0xf912C18f73AaEce880e2c683d4c412ea55327509',
+  },
+  // NerdApe
+  // https://quixotic.io/collection/???
+  [PROJ_NERD_APE]: {
+    //provider: PROVIDER_OP,
+    //contract_addr: '0x824BB1f0438A38Ea424e19171eF6665A4bCCe3A5',
   },
 };
