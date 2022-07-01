@@ -1,5 +1,5 @@
 // version
-const VERSION = "v1.0.9"
+const VERSION = "v1.1.0"
 
 // provider
 const PROVIDER_OP = "https://opt-mainnet.g.alchemy.com/v2/MnmlgcGeD8FPWiy_0SHlubv1htTHIB1g";
