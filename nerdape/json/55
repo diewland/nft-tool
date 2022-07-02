@@ -1,0 +1,12 @@
+{
+  "name": "Nerd Ape Dao #55",
+  "description": "A collection of Nerd Apes who share a common wealth interest.",
+  "image": "ipfs://QmYDx6fpjpF4mRGyiUdh5VR4Lvj5EwB7nDMrxYUbBcg7Mw/55",
+  "edition": 1,
+  "attributes": [
+    {
+      "trait_type": "ultimate rare",
+      "value": "Fire Nerd"
+    }
+  ]
+}
