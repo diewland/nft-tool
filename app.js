@@ -11,6 +11,8 @@ function get_qs(k) {
 }
 let qs_project = get_qs('project') || get_qs('p');
 let qs_token_id = get_qs('id');
+if (qs_project) $('#sel-project').val(qs_project);
+if (qs_token_id) $('#ipt-token-id').val(qs_token_id);
 
 // update version
 $("sub.version").html(VERSION);
@@ -167,11 +169,8 @@ function update_contract(new_provider, new_ctr_addr) {
           cur_contract = new web3.eth.Contract(contractABI);
           cur_contract.options.address = new_ctr_addr;
           console.log('contract', cur_contract);
-          if (qs_token_id) {
-            $('#ipt-token-id').val(qs_token_id);
+          if($('#ipt-token-id').val())
             $('#btn-download').click();
-            qs_token_id = null;
-          }
         }
         else {
           alert('contractABI not found');
@@ -188,6 +187,7 @@ $('#sel-project').change(evt => {
   let new_ctr_addr = info.contract_addr;
   if (new_provider && new_ctr_addr)
     update_contract(new_provider, new_ctr_addr);
+  else if($('#ipt-token-id').val()) // auto search for non-contract
+    $('#btn-download').click();
 });
-if (qs_project) $('#sel-project').val(qs_project);
 $('#sel-project').change();
