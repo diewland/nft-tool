@@ -73,7 +73,8 @@ function download_contract_op(token_id) {
   l('1. finding meta-data...');
   cur_contract.methods.tokenURI(token_id).call().then(r => {
     // https://ipfs.io/ipfs/QmZ2eKEiuV1UKxgsLrPUK9JXhvLhtbetxUwZEHRiqUaHq4/3356.json
-    let json_url = 'https://ipfs.io/ipfs/' + r.split('ipfs://')[1];
+    // let json_url = 'https://ipfs.io/ipfs/' + r.split('ipfs://')[1];
+    let json_url = 'https://cloudflare-ipfs.com/ipfs/' + r.split('ipfs://')[1];
     let refresh_url = './index.html?project=' + $('#sel-project').val().trim() + '&id=' + token_id;
     l(`2. reading meta-data... <a href='${refresh_url}'>refresh</a>`);
     console.log(json_url);
