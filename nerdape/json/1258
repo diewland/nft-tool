@@ -1,0 +1,32 @@
+{
+  "name": "Nerd Ape Dao #1258",
+  "description": "A collection of Nerd Apes who share a common wealth interest.",
+  "image": "ipfs://QmWEUtpNgAvYsNLJasrAof8u1gYgPWchXqnbq6fbBu1anD/1258",
+  "edition": 1,
+  "attributes": [
+    {
+      "trait_type": "background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "body",
+      "value": "Gold"
+    },
+    {
+      "trait_type": "clothes",
+      "value": "Flower Hawaii"
+    },
+    {
+      "trait_type": "eyewear",
+      "value": "Cyberpunk"
+    },
+    {
+      "trait_type": "head",
+      "value": "Cowboy hat"
+    },
+    {
+      "trait_type": "mouth",
+      "value": "Smile"
+    }
+  ]
+}

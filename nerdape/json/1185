@@ -1,12 +1,32 @@
 {
   "name": "Nerd Ape Dao #1185",
   "description": "A collection of Nerd Apes who share a common wealth interest.",
-  "image": "ipfs://QmYDx6fpjpF4mRGyiUdh5VR4Lvj5EwB7nDMrxYUbBcg7Mw/1185",
+  "image": "ipfs://QmWEUtpNgAvYsNLJasrAof8u1gYgPWchXqnbq6fbBu1anD/1185",
   "edition": 1,
   "attributes": [
     {
-      "trait_type": "unreveal",
-      "value": "Unreveal_common_original"
+      "trait_type": "background",
+      "value": "Red"
+    },
+    {
+      "trait_type": "body",
+      "value": "Zombie"
+    },
+    {
+      "trait_type": "clothes",
+      "value": "Black leather"
+    },
+    {
+      "trait_type": "eyewear",
+      "value": "Sleepy"
+    },
+    {
+      "trait_type": "head",
+      "value": "Blue headscarf"
+    },
+    {
+      "trait_type": "mouth",
+      "value": "Close"
     }
   ]
 }
