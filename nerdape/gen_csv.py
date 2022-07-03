@@ -25,7 +25,7 @@ CSV_FIELDS  = [
     F_TOKEN,
     F_NAME,
     F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH,
-    #F_URL,
+    F_URL,
 ]
 
 # prepare filename
@@ -85,7 +85,19 @@ for item in items:
     item[F_SCORE] = score
 
 # calc ranking
-# TODO
+prev_score = 0
+prev_rank = 0
+items.sort(key=lambda it: it[F_SCORE], reverse=True)
+for idx, item in enumerate(items):
+    cur_score = item[F_SCORE]
+    # next rank
+    if cur_score != prev_score:
+        cur_rank = idx + 1
+        prev_score = cur_score
+        prev_rank = cur_rank
+        item[F_RANK] = cur_rank
+    else:
+        item[F_RANK] = cur_rank
 
 # print csv
 print(SEP.join(CSV_FIELDS))
