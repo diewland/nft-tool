@@ -1,4 +1,4 @@
-import os, json
+import os, sys, json
 from pprint import pprint as pp
 
 # config
@@ -18,15 +18,33 @@ F_EYEWEAR   = 'eyewear'
 F_HEAD      = 'head'
 F_MOUTH     = 'mouth'
 F_URL       = 'link'
+F_MOVEMENT  = '📈'
+ICO_UP      = '🟢'
+ICO_DOWN    = '🔴'
+ICO_SAME    = '⚪'
+ICO_NEW     = '🟡'
 ATTRS       = [ F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH ]
 CSV_FIELDS  = [
     F_RANK,
+    F_MOVEMENT,
     #F_TOKEN,
     F_NAME,
     F_SCORE,
     F_URL,
     F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH,
 ]
+
+# prepare compare data
+compare_data = {}
+c_file = open(sys.argv[1], mode='r')
+c_lines = [ l.strip() for l in c_file.readlines() ]
+c_lines.pop(0) # rm header
+c_file.close()
+for l in c_lines:
+    c_data = l.split(SEP)
+    c_rank = int(c_data[0])
+    c_token_id = int(c_data[2])
+    compare_data[c_token_id] = c_rank
 
 # prepare filename
 ll = filter(lambda x: x.isnumeric(), os.listdir('json'))
@@ -95,13 +113,27 @@ for idx, item in enumerate(items):
         cur_rank = idx + 1
         prev_score = cur_score
         prev_rank = cur_rank
-        item[F_RANK] = cur_rank
+    # update rank
+    item[F_RANK] = cur_rank
+    # update movement
+    movement = ICO_NEW
+    token_id = item[F_TOKEN]
+    prev_rank = compare_data.get(token_id)
+    if prev_rank is None:
+        pass
+    elif cur_rank < prev_rank:
+        movement = '%s+%s' % (ICO_UP, prev_rank-cur_rank)
+    elif cur_rank > prev_rank:
+        movement = '%s-%s' % (ICO_DOWN, cur_rank-prev_rank)
+    elif cur_rank == prev_rank:
+        movement = ICO_SAME
     else:
-        item[F_RANK] = cur_rank
+        raise Exception('invalid data (%s, %s)' % (prev_rank, cur_rank))
+    item[F_MOVEMENT] = movement
 
 # print csv
 print(SEP.join(CSV_FIELDS))
 for item in items:
-    row = [ item.get(k) or '' for k in CSV_FIELDS ]
+    row = [ item.get(k, '') for k in CSV_FIELDS ]
     row = [ str(r) for r in row  ]
     print(SEP.join(row))
