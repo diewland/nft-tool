@@ -21,7 +21,7 @@ F_URL       = 'link'
 ATTRS       = [ F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH ]
 CSV_FIELDS  = [
     F_RANK,
-    F_TOKEN,
+    #F_TOKEN,
     F_NAME,
     F_SCORE,
     F_URL,
