@@ -21,11 +21,11 @@ F_URL       = 'link'
 ATTRS       = [ F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH ]
 CSV_FIELDS  = [
     F_RANK,
-    F_SCORE,
     F_TOKEN,
     F_NAME,
-    F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH,
+    F_SCORE,
     F_URL,
+    F_BG, F_BODY, F_CLOTHES, F_EYEWEAR, F_HEAD, F_MOUTH,
 ]
 
 # prepare filename
