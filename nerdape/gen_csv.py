@@ -43,7 +43,7 @@ c_file.close()
 for l in c_lines:
     c_data = l.split(SEP)
     c_rank = int(c_data[0])
-    c_token_id = int(c_data[2])
+    c_token_id = int(c_data[2].split('#')[1])
     compare_data[c_token_id] = c_rank
 
 # prepare filename
