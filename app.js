@@ -131,7 +131,8 @@ function download_nerd_ape(token_id, from_id=0, to_id=3332) {
   // https://quixotic.infura-ipfs.io/ipfs/QmQfF48YCDgDN1BFvSUy64jNebu4wakRhbGpr7XoZFPBLS/675
   // https://quixotic.infura-ipfs.io/ipfs/QmYDx6fpjpF4mRGyiUdh5VR4Lvj5EwB7nDMrxYUbBcg7Mw/675
   // https://quixotic.infura-ipfs.io/ipfs/QmWEUtpNgAvYsNLJasrAof8u1gYgPWchXqnbq6fbBu1anD/675
-  let img_url = 'https://quixotic.infura-ipfs.io/ipfs/QmWEUtpNgAvYsNLJasrAof8u1gYgPWchXqnbq6fbBu1anD/' + token_id;
+  // https://ipfs.quixotic.io/ipfs/QmVXA91P3FsrUTqLqYxgmtdtwhn45H9w7HfKgJtHU3VNv5/1393
+  let img_url = 'https://ipfs.quixotic.io/ipfs/QmVXA91P3FsrUTqLqYxgmtdtwhn45H9w7HfKgJtHU3VNv5/' + token_id;
   l(`loading image... or <a href='${img_url}'>open directly</a>`);
   console.log(img_url);
   $('#img-preview').attr('src', img_url);
