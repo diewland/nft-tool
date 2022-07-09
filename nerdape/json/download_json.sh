@@ -6,8 +6,9 @@
 # 20220705 https://ipfs.io/ipfs/QmbkNPgjhfj7B3qTAHVVBf6LauiFU4jxtQp9aBusbXCBeX/{1358-1376}
 # 20220706 https://cloudflare-ipfs.com/ipfs/QmUFTMRBZSg75g6eMfERCfKCQbvjvHEkr2rWdipGjqveZj/{1377-1377}
 # 20220708 https://cloudflare-ipfs.com/ipfs/Qmeo52knfLsM2TevgvSqYngsxnq4tiSeVGY6dgA6JhYqMd/{1378-1381}
+# 20220709 https://cloudflare-ipfs.com/ipfs/QmUizFR1jMb2F851RT5x8EE82Cry1BwuHgpvuD4LgAaLxJ/{1382-1393}
 
 for (( i=$1; i<=$2; i++ )); do
-  url="https://cloudflare-ipfs.com/ipfs/Qmeo52knfLsM2TevgvSqYngsxnq4tiSeVGY6dgA6JhYqMd/$i"
+  url="https://cloudflare-ipfs.com/ipfs/QmUizFR1jMb2F851RT5x8EE82Cry1BwuHgpvuD4LgAaLxJ/$i"
   wget --no-cache $url
 done
