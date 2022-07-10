@@ -1,0 +1,54 @@
+{
+  "name": "Oliens #1873",
+  "description": "2222 unique Oliens on optimism which is the first NFT collection of a bigger project named Ospace.",
+  "image": "ipfs://QmQxF3XykBCmX9ry5kAhsStsgnTSq1oSxbDGQJbwaEZHoo/1873.png",
+  "edition": 1873,
+  "date": 1657292657886,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "blackhole "
+    },
+    {
+      "trait_type": "Body",
+      "value": "sun burn white skin "
+    },
+    {
+      "trait_type": "Tattoo",
+      "value": ""
+    },
+    {
+      "trait_type": "Nose",
+      "value": "nose2 "
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "wide mouth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "tierd eyes sinning "
+    },
+    {
+      "trait_type": "On eyes",
+      "value": ""
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "simple green Tshirt "
+    },
+    {
+      "trait_type": "Accessorie",
+      "value": ""
+    },
+    {
+      "trait_type": "Head",
+      "value": "bald "
+    },
+    {
+      "trait_type": "Smokes",
+      "value": "blunt "
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
